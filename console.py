@@ -18,7 +18,7 @@ class HBnBCommand(cmd.Cmd):
         Command To Quit the Command Line
         """
         return True
-    
+
     def do_EOF(self, line):
         """
         Handles the Ends Of File with a newline
@@ -31,9 +31,10 @@ class HBnBCommand(cmd.Cmd):
         Handles Empty Line Command
         """
         pass
-    
+
     def postloop(self):
         print
+
 
 if __name__ == '__main__':
     HBnBCommand().cmdloop()
