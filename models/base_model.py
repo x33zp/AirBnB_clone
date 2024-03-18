@@ -18,7 +18,7 @@ class BaseModel:
     - updated_at: datetime - The datetime when the instance is updated.
     """
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """
         Initialize a new instance of the BaseModel class.
         """
