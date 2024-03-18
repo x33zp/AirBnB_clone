@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Comand Line Interpreter
+Comand Interpreter
 """
 
 import cmd
@@ -8,7 +8,7 @@ import cmd
 
 class HBnBCommand(cmd.Cmd):
     """
-    Command Line Interpreter Class
+    Command Interpreter Class
     """
 
     prompt = '(hbnb) '
