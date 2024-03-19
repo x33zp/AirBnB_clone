@@ -51,7 +51,7 @@ class HBNBCommand(cmd.Cmd):
         Args:
             args (str): The class name and instance id separated by space.
         """
-        if args == "" or args == None:
+        if args == "":
             print("** class name missing **")
         else:
             arg = args.split()
@@ -74,7 +74,7 @@ class HBNBCommand(cmd.Cmd):
         Args:
             args (str): The class name and instance id separated by space.
         """
-        if args == "" or args == None:
+        if args == "":
             print("** class name missing **")
         else:
             arg = args.split()
@@ -91,6 +91,19 @@ class HBNBCommand(cmd.Cmd):
                 else:
                     del storage.all()[key]
                     storage.save()
+
+    def do_all(self, arg):
+        """Print all string representation of all instances.
+
+        Args:
+            arg (str): The class name (optional).
+        """
+        if arg == "":
+            print([str(obj) for obj in storage.all().values()])
+        elif arg not in self.classes:
+            print("** class doesn't exist **")
+        else:
+            print([str(obj) for obj in storage.all().values()])
 
 
 if __name__ == '__main__':
