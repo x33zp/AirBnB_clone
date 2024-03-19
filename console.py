@@ -3,8 +3,14 @@
 """
 
 import cmd
-from models.base_model import BaseModel
 from models import storage
+from models.city import City
+from models.user import User
+from models.place import Place
+from models.state import State
+from models.review import Review
+from models.amenity import Amenity
+from models.base_model import BaseModel
 
 
 class HBNBCommand(cmd.Cmd):
@@ -12,7 +18,8 @@ class HBNBCommand(cmd.Cmd):
     """
 
     prompt = '(hbnb) '
-    classes = {'BaseModel'}
+    classes = {'BaseModel', 'User', 'State', 'City', 'Amenity',
+               'Place', 'Review'}
 
     def do_quit(self, person):
         """Quit command to exit the program
@@ -41,7 +48,7 @@ class HBNBCommand(cmd.Cmd):
         elif arg not in self.classes:
             print("** class doesn't exist **")
         else:
-            obj = BaseModel()
+            obj = eval(arg)()
             obj.save()
             print(obj.id)
 
@@ -132,7 +139,7 @@ class HBNBCommand(cmd.Cmd):
                     print("** value missing **")
                 else:
                     obj = storage.all()[key]
-                    setattr(obj, arg[2], arg[3].strip('"'))
+                    setattr(obj, arg[2], eval(arg[3]))
                     obj.save()
 
 
