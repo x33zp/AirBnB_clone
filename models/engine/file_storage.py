@@ -3,11 +3,15 @@
 of instances to/from JSON file.
 """
 
-import json
 import os
-from models.base_model import BaseModel
+import json
+from models.city import City
 from models.user import User
-
+from models.place import Place
+from models.state import State
+from models.review import Review
+from models.amenity import Amenity
+from models.base_model import BaseModel
 
 class FileStorage:
     """Class that serializes instances to a JSON file and
