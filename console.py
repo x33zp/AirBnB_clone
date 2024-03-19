@@ -51,14 +51,14 @@ class HBNBCommand(cmd.Cmd):
         Args:
             args (str): The class name and instance id separated by space.
         """
-        if args == "" or args == None:
+        if args == "":
             print("** class name missing **")
         else:
             arg = args.split()
 
             if arg[0] not in self.classes:
                 print("** class doesn't exist **")
-            elif len(arg) != 2:
+            elif len(arg) < 2:
                 print("** instance id missing **")
             else:
                 key = "{}.{}".format(arg[0], arg[1])
@@ -67,6 +67,73 @@ class HBNBCommand(cmd.Cmd):
                     print("** no instance found **")
                 else:
                     print(storage.all()[key])
+
+    def do_destroy(self, args):
+        """Delete an instance from storage.
+
+        Args:
+            args (str): The class name and instance id separated by space.
+        """
+        if args == "":
+            print("** class name missing **")
+        else:
+            arg = args.split()
+
+            if arg[0] not in self.classes:
+                print("** class doesn't exist **")
+            elif len(arg) < 2:
+                print("** instance id missing **")
+            else:
+                key = "{}.{}".format(arg[0], arg[1])
+
+                if key not in storage.all():
+                    print("** no instance found **")
+                else:
+                    del storage.all()[key]
+                    storage.save()
+
+    def do_all(self, arg):
+        """Print all string representation of all instances.
+
+        Args:
+            arg (str): The class name (optional).
+        """
+        if arg == "":
+            print([str(obj) for obj in storage.all().values()])
+        elif arg not in self.classes:
+            print("** class doesn't exist **")
+        else:
+            print([str(obj) for obj in storage.all().values()])
+
+    def do_update(self, args):
+        """Updates an attribute of an instance of a class.
+
+        Args:
+            args (str): A string containing the class name, instance ID,
+            attribute name, and value to be updated.
+        """
+        if args == "":
+            print("** class name missing **")
+        else:
+            arg = args.split()
+
+            if arg[0] not in self.classes:
+                print("** class doesn't exist **")
+            elif len(arg) < 2:
+                print("** instance id missing **")
+            else:
+                key = "{}.{}".format(arg[0], arg[1])
+
+                if key not in storage.all():
+                    print("** no instance found **")
+                elif len(arg) < 3:
+                    print("** attribute name missing **")
+                elif len(arg) < 4:
+                    print("** value missing **")
+                else:
+                    obj = storage.all()[key]
+                    setattr(obj, arg[2], arg[3].strip('"'))
+                    obj.save()
 
 
 if __name__ == '__main__':
