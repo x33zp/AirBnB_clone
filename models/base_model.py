@@ -6,8 +6,8 @@ common attributes/methods for other classes.
 """
 
 import uuid
-from datetime import datetime
 import models
+from datetime import datetime
 
 
 class BaseModel:
