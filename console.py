@@ -48,7 +48,7 @@ class HBNBCommand(cmd.Cmd):
         elif arg not in self.classes:
             print("** class doesn't exist **")
         else:
-            obj = BaseModel()
+            obj = eval(arg)()
             obj.save()
             print(obj.id)
 
