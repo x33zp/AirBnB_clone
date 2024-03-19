@@ -9,6 +9,7 @@ import uuid
 from datetime import datetime
 import models
 
+
 class BaseModel:
     """A base class for creating models with unique identifiers and timestamps.
 
@@ -31,9 +32,9 @@ class BaseModel:
             timeformat = "%Y-%m-%dT%H:%M:%S.%f"
             for key, value in kwargs.items():
                 if key == 'created_at' or key == 'updated_at':
-                    value = datetime.strptime(kwargs[key], timeformat) 
+                    value = datetime.strptime(kwargs[key], timeformat)
                 if key != '__class__':
-                    setattr(self, key, value)        
+                    setattr(self, key, value)
 
     def __str__(self):
         """Return a string representation of the object.
