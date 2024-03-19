@@ -8,7 +8,7 @@ class, which represents a user of the application.
 from models.base_model import BaseModel
 
 
-class User():
+class User(BaseModel):
     """This class represents a user."""
     email = ""
     password = ""
