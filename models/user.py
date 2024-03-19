@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 """User module.
 
 This module which inherits from BaseModel defines the User
