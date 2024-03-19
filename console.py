@@ -1,34 +1,29 @@
 #!/usr/bin/python3
-"""
-Comand Interpreter
+"""Comand Interpreter
 """
 
 import cmd
 
 
-class HBnBCommand(cmd.Cmd):
-    """
-    Command Interpreter Class
+class HBNBCommand(cmd.Cmd):
+    """Command Interpreter Class
     """
 
     prompt = '(hbnb) '
 
     def do_quit(self, person):
-        """
-        Command To Quit the Command Line
+        """Quit command to exit the program
         """
         return True
 
     def do_EOF(self, line):
-        """
-        Handles the Ends Of File with a newline
+        """Handles the Ends Of File with a newline
         """
         print()
         return True
 
     def emptyline(self):
-        """
-        Handles Empty Line Command
+        """Handles Empty Line Command
         """
         pass
 
@@ -37,4 +32,4 @@ class HBnBCommand(cmd.Cmd):
 
 
 if __name__ == '__main__':
-    HBnBCommand().cmdloop()
+    HBNBCommand().cmdloop()
