@@ -31,7 +31,10 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_create(self, arg):
-        """_summary_
+        """Create a new instance of a class
+
+        Args:
+            arg (str): The name of the class to create an instance of.
         """
         if arg == "":
             print("** class name missing **")
@@ -43,7 +46,10 @@ class HBNBCommand(cmd.Cmd):
             print(obj.id)
 
     def do_show(self, args):
-        """_summary_
+        """Show details of a specific instance.
+
+        Args:
+            args (str): The class name and instance id separated by space.
         """
         if args == "" or args == None:
             print("** class name missing **")
