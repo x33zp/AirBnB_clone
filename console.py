@@ -30,7 +30,7 @@ class HBNBCommand(cmd.Cmd):
         """
         pass
 
-    def do_create(self):
+    def do_create(self, arg):
         """_summary_
         """
 
