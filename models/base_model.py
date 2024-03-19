@@ -7,7 +7,7 @@ common attributes/methods for other classes.
 
 import uuid
 from datetime import datetime
-
+from models import storage
 
 class BaseModel:
     """A base class for creating models with unique identifiers and timestamps.
@@ -25,12 +25,13 @@ class BaseModel:
         self.id = str(uuid.uuid4())
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
+        storage.new(self)
 
         if kwargs:
             timeformat = "%Y-%m-%dT%H:%M:%S.%f"
             for key, value in kwargs.items():
                 if key == 'created_at' or key == 'updated_at':
-                    value = datetime.strptime(kwargs[key], timeformat)
+                    value = datetime.strptime(kwargs[key], timeformat) 
                 if key != '__class__':
                     setattr(self, key, value)        
 
@@ -51,6 +52,7 @@ class BaseModel:
         that the object has been modified or updated.
         """
         self.updated_at = datetime.now()
+        storage.save()
 
     def to_dict(self):
         """Return a dictionary representation of the instance.
