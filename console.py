@@ -33,6 +33,34 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, arg):
         """_summary_
         """
+        if arg == "":
+            print("** class name missing **")
+        elif arg not in self.classes:
+            print("** class doesn't exist **")
+        else:
+            obj = BaseModel()
+            obj.save()
+            print(obj.id)
+
+    def do_show(self, args):
+        """_summary_
+        """
+        if args == "" or args == None:
+            print("** class name missing **")
+        else:
+            arg = args.split()
+
+            if arg[0] not in self.classes:
+                print("** class doesn't exist **")
+            elif len(arg) != 2:
+                print("** instance id missing **")
+            else:
+                key = "{}.{}".format(arg[0], arg[1])
+
+                if key not in storage.all():
+                    print("** no instance found **")
+                else:
+                    print(storage.all()[key])
 
 
 if __name__ == '__main__':
