@@ -27,8 +27,9 @@ class HBNBCommand(cmd.Cmd):
         """
         pass
 
-    def postloop(self):
-        print
+    def do_create(self):
+        """_summary_
+        """
 
 
 if __name__ == '__main__':
