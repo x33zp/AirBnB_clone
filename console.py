@@ -132,7 +132,7 @@ class HBNBCommand(cmd.Cmd):
                     print("** value missing **")
                 else:
                     obj = storage.all()[key]
-                    setattr(obj, arg[2], arg[3].strip('"'))
+                    setattr(obj, arg[2], eval(arg[3]))
                     obj.save()
 
 
