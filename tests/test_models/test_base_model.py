@@ -45,13 +45,11 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsInstance(self.base_model.id, str)
 
     def test_datetime(self):
-        """_summary_
-        """
-        base_model = BaseModel()
-        self.assertTrue(hasattr(base_model, 'created_at'))
-        self.assertTrue(hasattr(base_model, 'updated_at'))
-        self.assertIsInstance(base_model.created_at, datetime)
-        self.assertIsInstance(base_model.updated_at, datetime)
+        """Test datetime attributes."""
+        self.assertTrue(hasattr(self.base_model, 'created_at'))
+        self.assertTrue(hasattr(self.base_model, 'updated_at'))
+        self.assertIsInstance(self.base_model.created_at, datetime)
+        self.assertIsInstance(self.base_model.updated_at, datetime)
 
     def test_init_with_attribute(self):
         """_summary_
