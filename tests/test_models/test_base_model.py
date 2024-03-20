@@ -39,13 +39,10 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsNotNone(self.base_model.updated_at)
 
     def test_uuid(self):
-        """_summary_
-        """
-        base_model_1 = BaseModel()
-        base_model_2 = BaseModel()
-        self.assertTrue(hasattr(base_model_1, 'id'))
-        self.assertNotEqual(base_model_1.id, base_model_2.id)
-        self.assertIsInstance(base_model_1.id, str)
+        """Test uniqueness of UUID."""
+        self.assertTrue(hasattr(self.base_model, 'id'))
+        self.assertNotEqual(self.base_model.id, self.base_model_2.id)
+        self.assertIsInstance(self.base_model.id, str)
 
     def test_datetime(self):
         """_summary_
