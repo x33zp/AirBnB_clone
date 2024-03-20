@@ -59,14 +59,11 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsInstance(self.base_model.number, int)
 
     def test_str_representation(self):
-        """_summary_
-        """
-        base_model = BaseModel()
-        base_model.name = "TestBaseModel"
-        base_model.number = 2
-        expected_str = "[BaseModel] ({}) {}".format(base_model.id,
-                                                    base_model.__dict__)
-        self.assertEqual(str(base_model), expected_str)
+        """Test string representation."""
+        self.base_model.name = "test_str"
+        expected_str = "[BaseModel] ({}) {}".format(self.base_model.id,
+                                                    self.base_model.__dict__)
+        self.assertEqual(str(self.base_model), expected_str)
 
     def test_dict_representation(self):
         """_summary_
