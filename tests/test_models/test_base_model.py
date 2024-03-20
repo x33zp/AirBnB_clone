@@ -52,14 +52,11 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsInstance(self.base_model.updated_at, datetime)
 
     def test_init_with_attribute(self):
-        """_summary_
-        """
-        base_model = BaseModel()
-        base_model.name = "TestBaseModel"
-        base_model.number = 1
-        self.assertTrue(hasattr(base_model, 'name'))
-        self.assertIsInstance(base_model.name, str)
-        self.assertIsInstance(base_model.number, int)
+        """Test initialization with additional attribute."""
+        self.base_model.author = "zubby peculiar"
+        self.assertEqual(self.base_model.author, "zubby peculiar")
+        self.assertIsInstance(self.base_model.name, str)
+        self.assertIsInstance(self.base_model.number, int)
 
     def test_str_representation(self):
         """_summary_
