@@ -62,7 +62,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertIn("'created_at': " + created, base_model.__str__())
         self.assertIn("'updated_at': " + updated, base_model.__str__())
 
-    def test_dict_reprecentation(self):
+    def test_dict_representation(self):
         """_summary_
         """
         base_model = BaseModel()
