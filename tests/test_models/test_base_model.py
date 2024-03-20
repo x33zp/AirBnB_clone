@@ -53,14 +53,8 @@ class TestBaseModel(unittest.TestCase):
         base_model = BaseModel()
         base_model.name = "TestBaseModel"
         base_model.number = 2
-        model_id = base_model.id
-        created = repr(base_model.created_at)
-        updated = repr(base_model.updated_at)
-        self.assertIn("[BaseModel] ", base_model.__str__())
-        self.assertIn(str(model_id), base_model.__str__())
-        self.assertIn("'name': 'TestBaseModel'", base_model.__str__())
-        self.assertIn("'created_at': " + created, base_model.__str__())
-        self.assertIn("'updated_at': " + updated, base_model.__str__())
+        expected_str = "[BaseMode] ({}) {}".format(base_model.id, base_model.__dict__)
+        self.assertEqual(str(base_model), expected_str)
 
     def test_dict_representation(self):
         """_summary_
