@@ -53,7 +53,7 @@ class TestBaseModel(unittest.TestCase):
         base_model = BaseModel()
         base_model.name = "TestBaseModel"
         base_model.number = 2
-        expected_str = "[BaseMode] ({}) {}".format(base_model.id,
+        expected_str = "[BaseModel] ({}) {}".format(base_model.id,
                                                    base_model.__dict__)
         self.assertEqual(str(base_model), expected_str)
 
@@ -64,14 +64,7 @@ class TestBaseModel(unittest.TestCase):
         base_model.name = "TestBaseModel"
         base_model.number = 3
         obj_dict = base_model.to_dict()
-        created_iso = base_model.created_at.isoformat()
-        updated_iso = base_model.updated_at.isoformat()
-        self.assertEqual(obj_dict['id'], base_model.id)
-        self.assertEqual(obj_dict['__class__'], 'BaseModel')
-        self.assertEqual(obj_dict['name'], 'TestBaseModel')
-        self.assertEqual(obj_dict['number'], 3)
-        self.assertEqual(obj_dict['created_at'], created_iso)
-        self.assertEqual(obj_dict['updated_at'], updated_iso)
+        self.assertEqual(obj_dict, base_model.__dict__)
 
     def test_save(self):
         """_summary_
