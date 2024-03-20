@@ -11,8 +11,26 @@ from models.base_model import BaseModel
 
 
 class TestBaseModel(unittest.TestCase):
-    """_summary_
-    """
+    """Test cases for the BaseModel class."""
+
+    def setUp(self):
+        """setUp method for the class"""
+        self.base_model = BaseModel()
+        self.base_model_2 = BaseModel()
+        self.base_model.name = "TestBaseModel"
+        self.base_model.number = 89
+        self.model_dict = self.base_model.to_dict()
+
+        if os.path.isfile("file.json"):
+            os.rename("file.json", "tmp.json")
+
+    def tearDown(self):
+        """Tear down method for the class."""
+        if os.path.isfile("file.json"):
+            os.remove("file.json")
+        elif os.path.isfile("tmp.json"):
+            os.rename("tmp.json", "file.json")
+
     def test_init(self):
         """_summary_
         """
