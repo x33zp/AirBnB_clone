@@ -66,18 +66,15 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(str(self.base_model), expected_str)
 
     def test_dict_representation(self):
-        """_summary_
-        """
-        base_model = BaseModel()
-        base_model.name = "TestBaseModel"
-        base_model.number = 3
-        obj_dict = base_model.to_dict()
-        created_iso = base_model.created_at.isoformat()
-        updated_iso = base_model.updated_at.isoformat()
-        self.assertEqual(obj_dict['id'], base_model.id)
+        """Test dictionary representation."""
+        self.base_model.name = "test_dict"
+        obj_dict = self.base_model.to_dict()
+        created_iso = self.base_model.created_at.isoformat()
+        updated_iso = self.base_model.updated_at.isoformat()
+        self.assertEqual(obj_dict['id'], self.base_model.id)
         self.assertEqual(obj_dict['__class__'], 'BaseModel')
-        self.assertEqual(obj_dict['name'], 'TestBaseModel')
-        self.assertEqual(obj_dict['number'], 3)
+        self.assertEqual(obj_dict['name'], 'test_dict')
+        self.assertEqual(obj_dict['number'], 89)
         self.assertEqual(obj_dict['created_at'], created_iso)
         self.assertEqual(obj_dict['updated_at'], updated_iso)
 
