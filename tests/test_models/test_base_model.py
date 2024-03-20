@@ -79,10 +79,12 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(obj_dict['updated_at'], updated_iso)
 
     def test_save(self):
-        """_summary_
-        """
-        base_model = BaseModel()
-        pass
+        """Test save method."""
+        self.base_model.name = "test_save"
+        self.base_model.save()
+        model_dict_2 = self.base_model.to_dict()
+        self.assertNotEqual(self.model_dict['updated_at'],
+                            model_dict_2['updated_at'])
 
     def test_kwargs(self):
         """_summary_
