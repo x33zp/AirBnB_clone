@@ -54,7 +54,7 @@ class TestBaseModel(unittest.TestCase):
         base_model.name = "TestBaseModel"
         base_model.number = 2
         expected_str = "[BaseModel] ({}) {}".format(base_model.id,
-                                                   base_model.__dict__)
+                                                    base_model.__dict__)
         self.assertEqual(str(base_model), expected_str)
 
     def test_dict_representation(self):
