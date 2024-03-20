@@ -32,13 +32,11 @@ class TestBaseModel(unittest.TestCase):
             os.rename("tmp.json", "file.json")
 
     def test_init(self):
-        """_summary_
-        """
-        base_model = BaseModel()
-        self.assertIsInstance(base_model, BaseModel)
-        self.assertIsNotNone(base_model.id)
-        self.assertIsNotNone(base_model.created_at)
-        self.assertIsNotNone(base_model.updated_at)
+        """Test initialization of BaseModel."""
+        self.assertIsInstance(self.base_model, BaseModel)
+        self.assertIsNotNone(self.base_model.id)
+        self.assertIsNotNone(self.base_model.created_at)
+        self.assertIsNotNone(self.base_model.updated_at)
 
     def test_uuid(self):
         """_summary_
