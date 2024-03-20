@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-"""_summary_
+"""Unit tests for the BaseModel class.
+
+This module contains unit tests for the BaseModel class.
 """
 
 import os
