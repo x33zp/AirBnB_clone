@@ -64,7 +64,14 @@ class TestBaseModel(unittest.TestCase):
         base_model.name = "TestBaseModel"
         base_model.number = 3
         obj_dict = base_model.to_dict()
-        self.assertEqual(obj_dict, base_model.__dict__)
+        created_iso = base_model.created_at.isoformat()
+        updated_iso = base_model.updated_at.isoformat()
+        self.assertEqual(obj_dict['id'], base_model.id)
+        self.assertEqual(obj_dict['__class__'], 'BaseModel')
+        self.assertEqual(obj_dict['name'], 'TestBaseModel')
+        self.assertEqual(obj_dict['number'], 3)
+        self.assertEqual(obj_dict['created_at'], created_iso)
+        self.assertEqual(obj_dict['updated_at'], updated_iso)
 
     def test_save(self):
         """_summary_
