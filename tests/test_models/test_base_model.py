@@ -86,12 +86,12 @@ class TestBaseModel(unittest.TestCase):
         self.assertNotEqual(self.model_dict['updated_at'],
                             model_dict_2['updated_at'])
 
-    def test_kwargs(self):
-        """_summary_
-        """
-        base_model = BaseModel()
-        base_model.name = "TestBaseModel"
-        base_model.number = 5
+    def test_init_with_kwargs(self):
+        """Test initialization with keyword arguments."""
+        kwargs_model = BaseModel(**self.model_dict)
+        self.assertEqual(kwargs_model.name, "TestBaseModel")
+        self.assertEqual(kwargs_model.number, 89)
+        self.assertIsInstance(kwargs_model.created_at, datetime)
 
 
 if __name__ == '__main__':
