@@ -87,6 +87,8 @@ class TestBaseModel(unittest.TestCase):
         model_dict_2 = self.base_model.to_dict()
         self.assertNotEqual(self.model_dict['updated_at'],
                             model_dict_2['updated_at'])
+        self.assertEqual(self.model_dict['created_at'],
+                         model_dict_2['created_at'])
 
     def test_init_with_kwargs(self):
         """Test initialization with keyword arguments."""
