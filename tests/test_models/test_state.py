@@ -15,11 +15,10 @@ class TestUser(unittest.TestCase):
     """Test cases for the User class."""
 
     def setUp(self):
-        """_summary_
-        """
+        """Set up method for the class"""
         self.state_model = State()
         self.state_model_2 = State()
-        self.state_model.name = "porthacourt"
+        self.state_model.name = "Rivers"
         self.model_dict = self.state_model.to_dict()
 
         if os.path.isfile("file.json"):
@@ -61,8 +60,8 @@ class TestUser(unittest.TestCase):
 
     def test_init_with_attribute(self):
         """Test initialization with additional attribute."""
-        self.state_model.name = "lagos"
-        self.assertEqual(self.state_model.name, "lagos")
+        self.state_model.name = "Lagos"
+        self.assertEqual(self.state_model.name, "Lagos")
         self.assertIsInstance(self.state_model.name, str)
 
     def test_str_representation(self):
@@ -78,7 +77,7 @@ class TestUser(unittest.TestCase):
         updated_iso = self.state_model.updated_at.isoformat()
         self.assertEqual(self.model_dict['id'], self.state_model.id)
         self.assertEqual(self.model_dict['__class__'], 'State')
-        self.assertEqual(self.model_dict['name'], 'porthacourt')
+        self.assertEqual(self.model_dict['name'], 'Rivers')
         self.assertEqual(self.model_dict['created_at'], created_iso)
         self.assertEqual(self.model_dict['updated_at'], updated_iso)
 
@@ -88,12 +87,14 @@ class TestUser(unittest.TestCase):
         model_dict_2 = self.state_model.to_dict()
         self.assertNotEqual(self.model_dict['updated_at'],
                             model_dict_2['updated_at'])
+        self.assertEqual(self.model_dict['created_at'],
+                         model_dict_2['created_at'])
 
     def test_init_with_kwargs(self):
         """Test initialization with keyword arguments."""
         kwargs_model = State(**self.model_dict)
         self.assertIsInstance(kwargs_model.id, str)
-        self.assertEqual(kwargs_model.name, "porthacourt")
+        self.assertEqual(kwargs_model.name, "Rivers")
         self.assertIsInstance(kwargs_model.created_at, datetime)
         self.assertIsNotNone(kwargs_model.updated_at, datetime)
 
