@@ -20,8 +20,7 @@ class BaseModel:
     """
 
     def __init__(self, *args, **kwargs):
-        """
-        Initialize a new instance of the BaseModel class.
+        """Initialize a new instance of the BaseModel class.
         """
         if not kwargs:
             self.id = str(uuid.uuid4())
