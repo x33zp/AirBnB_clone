@@ -1,27 +1,28 @@
 #!/usr/bin/python3
-"""Unit tests for the BaseModel class.
+"""Unit tests for the User class.
 
-This module contains unit tests for the BaseModel class.
+This module contains unit tests for the User class.
 """
 
 import os
 import unittest
+from models.user import User
 from datetime import datetime
 from models.base_model import BaseModel
 
 
-class TestBaseModel(unittest.TestCase):
-    """Test cases for the BaseModel class."""
+class TestUser(unittest.TestCase):
+    """Test cases for the User class."""
 
     def setUp(self):
-        """setUp method for the class"""
+        """Set up method for the class"""
         if os.path.isfile("file.json"):
             os.rename("file.json", "tmp.json")
 
-        self.obj = BaseModel()
-        self.obj_2 = BaseModel()
-        self.obj.name = "TestBaseModel"
-        self.obj.number = 89
+        self.obj = User()
+        self.obj_2 = User()
+        self.obj.email = "zubbypeculiar@gmail.com"
+        self.obj.password = "root"
         self.obj_dict = self.obj.to_dict()
 
     def tearDown(self):
@@ -33,10 +34,10 @@ class TestBaseModel(unittest.TestCase):
 
     def test_init(self):
         """Test initialization of BaseModel."""
-        self.assertIsInstance(self.obj, BaseModel)
         self.assertIsNotNone(self.obj.id)
         self.assertIsNotNone(self.obj.created_at)
         self.assertIsNotNone(self.obj.updated_at)
+        self.assertTrue(issubclass(type(self.obj), BaseModel))
 
     def test_uuid(self):
         """Test uniqueness of UUID."""
@@ -53,32 +54,40 @@ class TestBaseModel(unittest.TestCase):
         self.assertNotEqual(self.obj.created_at,
                             self.obj_2.created_at)
 
+    def test_for_attributes(self):
+        """Test if class attributes exists."""
+        self.assertIn('email', dir(self.obj_2))
+        self.assertIsInstance(self.obj.password, str)
+        self.assertTrue(hasattr(self.obj, 'email'))
+        self.assertTrue(hasattr(self.obj, 'password'))
+        self.assertTrue(hasattr(self.obj, 'first_name'))
+        self.assertTrue(hasattr(self.obj, 'last_name'))
+        self.assertNotIn('password', self.obj_2.__dict__)
+
     def test_init_with_attribute(self):
         """Test initialization with additional attribute."""
-        self.obj.author = "zubby peculiar"
-        self.assertEqual(self.obj.author, "zubby peculiar")
-        self.assertIsInstance(self.obj.name, str)
-        self.assertIsInstance(self.obj.number, int)
+        self.obj.first_name = "Zubby"
+        self.obj.last_name = "Peculiar"
+        self.assertEqual(self.obj.first_name, "Zubby")
+        self.assertIsInstance(self.obj.last_name, str)
 
     def test_str_representation(self):
         """Test string representation."""
         self.obj.name = "test_str"
-        expected_str = "[BaseModel] ({}) {}".format(self.obj.id,
-                                                    self.obj.__dict__)
+        expected_str = "[User] ({}) {}".format(self.obj.id,
+                                               self.obj.__dict__)
         self.assertEqual(str(self.obj), expected_str)
 
     def test_dict_representation(self):
         """Test dictionary representation."""
-        self.obj.name = "test_dict"
-        obj_dict = self.obj.to_dict()
         created_iso = self.obj.created_at.isoformat()
         updated_iso = self.obj.updated_at.isoformat()
-        self.assertEqual(obj_dict['id'], self.obj.id)
-        self.assertEqual(obj_dict['__class__'], 'BaseModel')
-        self.assertEqual(obj_dict['name'], 'test_dict')
-        self.assertEqual(obj_dict['number'], 89)
-        self.assertEqual(obj_dict['created_at'], created_iso)
-        self.assertEqual(obj_dict['updated_at'], updated_iso)
+        self.assertEqual(self.obj_dict['id'], self.obj.id)
+        self.assertEqual(self.obj_dict['__class__'], 'User')
+        self.assertEqual(self.obj_dict['email'], 'zubbypeculiar@gmail.com')
+        self.assertEqual(self.obj_dict['password'], 'root')
+        self.assertEqual(self.obj_dict['created_at'], created_iso)
+        self.assertEqual(self.obj_dict['updated_at'], updated_iso)
 
     def test_save(self):
         """Test save method."""
@@ -91,10 +100,11 @@ class TestBaseModel(unittest.TestCase):
 
     def test_init_with_kwargs(self):
         """Test initialization with keyword arguments."""
-        kwargs_model = BaseModel(**self.obj_dict)
-        self.assertEqual(kwargs_model.name, "TestBaseModel")
-        self.assertEqual(kwargs_model.number, 89)
+        kwargs_model = User(**self.obj_dict)
+        self.assertIsInstance(kwargs_model.id, str)
+        self.assertEqual(kwargs_model.email, "zubbypeculiar@gmail.com")
         self.assertIsInstance(kwargs_model.created_at, datetime)
+        self.assertIsNotNone(kwargs_model.updated_at, datetime)
 
 
 if __name__ == '__main__':
