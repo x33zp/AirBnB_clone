@@ -16,13 +16,13 @@ class TestUser(unittest.TestCase):
 
     def setUp(self):
         """Set up method for the class"""
+        if os.path.isfile("file.json"):
+            os.rename("file.json", "tmp.json")
+
         self.obj = State()
         self.obj_2 = State()
         self.obj.name = "Rivers"
         self.obj_dict = self.obj.to_dict()
-
-        if os.path.isfile("file.json"):
-            os.rename("file.json", "tmp.json")
 
     def tearDown(self):
         """Tear down method for the class."""

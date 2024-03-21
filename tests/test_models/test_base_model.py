@@ -15,14 +15,14 @@ class TestBaseModel(unittest.TestCase):
 
     def setUp(self):
         """setUp method for the class"""
+        if os.path.isfile("file.json"):
+            os.rename("file.json", "tmp.json")
+
         self.obj = BaseModel()
         self.obj_2 = BaseModel()
         self.obj.name = "TestBaseModel"
         self.obj.number = 89
         self.obj_dict = self.obj.to_dict()
-
-        if os.path.isfile("file.json"):
-            os.rename("file.json", "tmp.json")
 
     def tearDown(self):
         """Tear down method for the class."""

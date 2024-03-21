@@ -16,15 +16,15 @@ class TestUser(unittest.TestCase):
 
     def setUp(self):
         """Set up method for the class"""
+        if os.path.isfile("file.json"):
+            os.rename("file.json", "tmp.json")
+
         self.obj = Place()
         self.obj_2 = Place()
         self.obj.city_id = "12345"
         self.obj.max_guest = 2
         self.obj.amenity_ids = ["1234", "5678"]
         self.obj_dict = self.obj.to_dict()
-
-        if os.path.isfile("file.json"):
-            os.rename("file.json", "tmp.json")
 
     def tearDown(self):
         """Tear down method for the class."""
