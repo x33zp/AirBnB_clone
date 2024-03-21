@@ -50,6 +50,8 @@ class TestBaseModel(unittest.TestCase):
         self.assertTrue(hasattr(self.base_model, 'updated_at'))
         self.assertIsInstance(self.base_model.created_at, datetime)
         self.assertIsInstance(self.base_model.updated_at, datetime)
+        self.assertNotEqual(self.base_model.created_at,
+                         self.base_model_2.created_at)
 
     def test_init_with_attribute(self):
         """Test initialization with additional attribute."""
