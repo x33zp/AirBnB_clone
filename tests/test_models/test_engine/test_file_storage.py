@@ -94,7 +94,14 @@ class TestFileStorage(unittest.TestCase):
     def test_reload(self):
         """_summary_
         """
-        
+        for obj in self.classes:
+            model_obj = eval(obj)()
+            storage.new(model_obj)
+            storage.save()
+            storage.reload()
+            key = "{}.{}".format(type(model_obj).__name__, model_obj.id)
+            self.assertIn(key, storage._FileStorage__objects)
+
 
 if __name__ == '__main__':
     unittest.main()
