@@ -70,7 +70,7 @@ class TestUser(unittest.TestCase):
         """Test string representation."""
         self.obj.name = "test_str"
         expected_str = "[Amenity] ({}) {}".format(self.obj.id,
-                                                self.obj.__dict__)
+                                                  self.obj.__dict__)
         self.assertEqual(str(self.obj), expected_str)
 
     def test_dict_representation(self):
