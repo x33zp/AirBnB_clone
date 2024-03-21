@@ -15,8 +15,7 @@ class TestUser(unittest.TestCase):
     """Test cases for the User class."""
 
     def setUp(self):
-        """Set up method for the class
-        """
+        """Set up method for the class"""
         self.user_model = User()
         self.user_model_2 = User()
         self.user_model.email = "zubbypeculiar@gmail.com"
@@ -94,6 +93,8 @@ class TestUser(unittest.TestCase):
         model_dict_2 = self.user_model.to_dict()
         self.assertNotEqual(self.model_dict['updated_at'],
                             model_dict_2['updated_at'])
+        self.assertEqual(self.model_dict['created_at'],
+                         model_dict_2['created_at'])
 
     def test_init_with_kwargs(self):
         """Test initialization with keyword arguments."""
