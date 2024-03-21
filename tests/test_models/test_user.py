@@ -15,7 +15,7 @@ class TestUser(unittest.TestCase):
     """Test cases for the User class."""
 
     def setUp(self):
-        """_summary_
+        """Set up method for the class
         """
         self.user_model = User()
         self.user_model_2 = User()
