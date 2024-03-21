@@ -53,7 +53,7 @@ class TestUser(unittest.TestCase):
         self.assertIsInstance(self.user_model.created_at, datetime)
         self.assertIsInstance(self.user_model.updated_at, datetime)
         self.assertNotEqual(self.user_model.created_at,
-                         self.user_model_2.created_at)
+                            self.user_model_2.created_at)
 
     def test_for_attributes(self):
         """Test if class attributes exists."""
