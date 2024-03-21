@@ -56,11 +56,13 @@ class TestUser(unittest.TestCase):
 
     def test_for_attributes(self):
         """Test if class attributes exists."""
+        self.assertIn('email', dir(self.user_model_2))
         self.assertIsInstance(self.user_model.email, str)
         self.assertTrue(hasattr(self.user_model, 'email'))
         self.assertTrue(hasattr(self.user_model, 'password'))
         self.assertTrue(hasattr(self.user_model, 'first_name'))
         self.assertTrue(hasattr(self.user_model, 'last_name'))
+        self.assertNotIn('password', self.user_model_2.__dict__)
 
     def test_init_with_attribute(self):
         """Test initialization with additional attribute."""
