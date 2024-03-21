@@ -30,7 +30,7 @@ class TestUser(unittest.TestCase):
         """Tear down method for the class."""
         if os.path.isfile("file.json"):
             os.remove("file.json")
-        elif os.path.isfile("tmp.json"):
+        if os.path.isfile("tmp.json"):
             os.rename("tmp.json", "file.json")
 
     def test_init(self):
