@@ -14,6 +14,7 @@ from models.base_model import BaseModel
 class TestUser(unittest.TestCase):
     """Test cases for the User class."""
 
+    @classmethod
     def setUp(self):
         """Set up method for thr class"""
         if os.path.isfile("file.json"):
@@ -24,6 +25,7 @@ class TestUser(unittest.TestCase):
         self.obj.name = "porthacourt"
         self.obj_dict = self.obj.to_dict()
 
+    @classmethod
     def tearDown(self):
         """Tear down method for the class."""
         if os.path.isfile("file.json"):

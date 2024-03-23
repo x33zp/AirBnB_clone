@@ -21,6 +21,7 @@ from models.engine.file_storage import FileStorage
 class TestFileStorage(unittest.TestCase):
     """Test cases for the FileStorage class"""
 
+    @classmethod
     def setUp(self):
         """Set up method for the class"""
         if os.path.isfile(storage._FileStorage__file_path):
@@ -31,6 +32,7 @@ class TestFileStorage(unittest.TestCase):
         self.classes = {'BaseModel', 'User', 'State', 'City', 'Amenity',
                         'Place', 'Review'}
 
+    @classmethod
     def tearDown(self):
         """Tear down method for the class."""
         if os.path.isfile(storage._FileStorage__file_path):

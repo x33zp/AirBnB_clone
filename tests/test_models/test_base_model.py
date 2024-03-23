@@ -13,6 +13,7 @@ from models.base_model import BaseModel
 class TestBaseModel(unittest.TestCase):
     """Test cases for the BaseModel class."""
 
+    @classmethod
     def setUp(self):
         """setUp method for the class"""
         if os.path.isfile("file.json"):
@@ -24,6 +25,7 @@ class TestBaseModel(unittest.TestCase):
         self.obj.number = 89
         self.obj_dict = self.obj.to_dict()
 
+    @classmethod
     def tearDown(self):
         """Tear down method for the class."""
         if os.path.isfile("file.json"):
