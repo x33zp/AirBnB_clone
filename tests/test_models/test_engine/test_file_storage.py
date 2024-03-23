@@ -39,26 +39,22 @@ class TestFileStorage(unittest.TestCase):
             os.rename("tmp.json", storage._FileStorage__file_path)
 
     def test_instance(self):
-        """_summary_
-        """
+        """Test for instance creation."""
         self.assertIsInstance(storage, FileStorage)
         self.assertEqual(type(storage).__name__, "FileStorage")
 
     def test_for_private_attr(self):
-        """_summary_
-        """
+        """Test for existence of private attributes."""
         self.assertTrue(hasattr(storage, "_FileStorage__file_path"))
         self.assertTrue(hasattr(storage, "_FileStorage__objects"))
 
     def test_for_attr_types(self):
-        """_summary_
-        """
+        """Test for correct attribute types."""
         self.assertIsInstance(storage._FileStorage__objects, dict)
         self.assertIsInstance(storage._FileStorage__file_path, str)
 
     def test_all(self):
-        """_summary_
-        """
+        """Test for the 'all' method."""
         for obj in self.classes:
             eval(obj)()
         self.assertIsNotNone(self.all_objs)
@@ -68,8 +64,7 @@ class TestFileStorage(unittest.TestCase):
             self.assertIn(obj_dict['__class__'], self.classes)
 
     def test_new(self):
-        """_summary_
-        """
+        """Test for the 'new' method."""
         for obj in self.classes:
             model_obj = eval(obj)()
             storage.new(model_obj)
@@ -77,8 +72,7 @@ class TestFileStorage(unittest.TestCase):
             self.assertIn(key, storage._FileStorage__objects)
 
     def test_save(self):
-        """_summary_
-        """
+        """Test for the 'save' method."""
         self.assertEqual(self.all_objs, {})
         self.assertFalse(os.path.isfile(storage._FileStorage__file_path))
         for obj in self.classes:
@@ -92,8 +86,7 @@ class TestFileStorage(unittest.TestCase):
         self.assertTrue(os.path.isfile(storage._FileStorage__file_path))
 
     def test_reload(self):
-        """_summary_
-        """
+        """Test for the 'reload' method."""
         for obj in self.classes:
             model_obj = eval(obj)()
             storage.new(model_obj)
