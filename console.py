@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """Comand Interpreter
 """
-
+import re
 import cmd
 from models import storage
 from models.city import City
@@ -43,7 +43,7 @@ class HBNBCommand(cmd.Cmd):
         Args:
             arg (str): The name of the class to create an instance of.
         """
-        if arg == "":
+        if not arg:
             print("** class name missing **")
         elif arg not in self.classes:
             print("** class doesn't exist **")
@@ -58,7 +58,7 @@ class HBNBCommand(cmd.Cmd):
         Args:
             args (str): The class name and instance id separated by space.
         """
-        if args == "":
+        if not args:
             print("** class name missing **")
         else:
             arg = args.split()
@@ -81,7 +81,7 @@ class HBNBCommand(cmd.Cmd):
         Args:
             args (str): The class name and instance id separated by space.
         """
-        if args == "":
+        if not args:
             print("** class name missing **")
         else:
             arg = args.split()
@@ -105,16 +105,15 @@ class HBNBCommand(cmd.Cmd):
         Args:
             arg (str): The class name (optional).
         """
-        if args == "":
+        if not args:
             print([str(obj) for obj in storage.all().values()])
         else:
             arg = args.split()
             if arg[0] not in self.classes:
                 print("** class doesn't exist **")
             else:
-                for obj in storage.all().values():
-                    if arg[0] == type(obj).__name__:
-                        print(str(obj))
+                print([str(obj) for obj in storage.all().values()
+                       if arg[0] == type(obj).__name__])
 
     def do_update(self, args):
         """Updates an attribute of an instance of a class.
@@ -123,7 +122,7 @@ class HBNBCommand(cmd.Cmd):
             args (str): A string containing the class name, instance ID,
             attribute name, and value to be updated.
         """
-        if args == "":
+        if not args:
             print("** class name missing **")
         else:
             arg = args.split()
@@ -145,6 +144,80 @@ class HBNBCommand(cmd.Cmd):
                     obj = storage.all()[key]
                     setattr(obj, arg[2], eval(arg[3]))
                     obj.save()
+
+    def default(self, args):
+        """_summary_
+        """
+        pattern = r'^(\w+)\.(\w+)(?:\(([^)]*)\))$'
+        command_string = args
+        match = re.search(pattern, command_string)
+        if not match:
+            print("*** Unknown syntax:", args)
+            return
+        obj_name = match.group(1)
+        method = match.group(2)
+        obj_args = match.group(3)
+        args_pattern = r'^"([^"]*)"(?:, (.*))?$'
+        args_match = re.search(args_pattern, obj_args)
+        if args_match:
+            obj_id = args_match.group(1)
+            attr = args_match.group(2)
+
+        if obj_name not in self.classes:
+            print("** class doesn't exist **")
+        else:
+            if not obj_args:
+                if method == 'all':
+                    return self.do_all(obj_name)
+                elif method == 'count':
+                    print(len([obj for obj in storage.all().values()
+                               if obj_name == type(obj).__name__]))
+                else:
+                    print("*** Unknown syntax:", args)
+            else:
+                if not args_match:
+                    obj_id = obj_args
+                    print("*** Unknown syntax:", args)
+                    return
+
+                if not attr:
+                    if method == 'show':
+                        show = "{} {}".format(obj_name, obj_id)
+                        self.do_show(show)
+                    elif method == 'destroy':
+                        destroy = "{} {}".format(obj_name, obj_id)
+                        self.do_destroy(destroy)
+                    else:
+                        print("*** Unknown syntax:", args)
+                else:
+                    if method == 'update':
+                        dict_pattern = (r'^({["\'][^\"]+["\']\s*:\s*(["\']'
+                                        r'[^"\']+["\']|\d+(\.\d+)?)(?:,\s*'
+                                        r'["\'][^\"]+["\']\s*:\s*(["\'][^"\']+'
+                                        r'["\']|\d+(\.\d+)?))*})$')
+                        dict_match = re.search(dict_pattern, attr)
+
+                        key_value_pattern = (r'^["\'](.*)["\'](?:, (["\'].*'
+                                             r'["\']$|\d+(\.\d+)?))')
+                        key_value_match = re.search(key_value_pattern, attr)
+                        if dict_match:
+                            dictionary = dict_match.group(1)
+                            for key, value in eval(dictionary).items():
+                                if type(value) is str:
+                                    update = '{} {} {} "{}"'.format(
+                                        obj_name, obj_id, key, value)
+                                else:
+                                    update = '{} {} {} {}'.format(
+                                        obj_name, obj_id, key, value)
+                                self.do_update(update)
+                        elif key_value_match:
+                            obj_key = key_value_match.group(1)
+                            obj_value = key_value_match.group(2)
+                            update = '{} {} {} {}'.format(
+                                obj_name, obj_id, obj_key, obj_value)
+                            self.do_update(update)
+                        else:
+                            print("*** Unknown syntax:", args)
 
 
 if __name__ == '__main__':
