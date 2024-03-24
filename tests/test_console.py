@@ -31,6 +31,7 @@ class TestHBNBCommand(unittest.TestCase):
             os.remove("file.json")
         if os.path.isfile("tmp.json"):
             os.rename("tmp.json", "file.json")
+        pass
 
     def test_prompt(self):
         """_summary_
@@ -148,7 +149,7 @@ class TestHBNBCommand(unittest.TestCase):
         self.uid = output.getvalue().strip()
         self.assertTrue(len(self.uid) > 0)
 
-    def test_all_no_arg(self):
+    def test_do_all_no_arg(self):
         """_summary_
         """
         with patch('sys.stdout', new=StringIO()) as output:
@@ -156,7 +157,7 @@ class TestHBNBCommand(unittest.TestCase):
         instance_str = output.getvalue()
         self.assertIn(self.uid, instance_str)
 
-    def test_all_with_arg(self):
+    def test_do_all_with_arg(self):
         """_summary_
         """
         with patch('sys.stdout', new=StringIO()) as output:
@@ -172,10 +173,59 @@ class TestHBNBCommand(unittest.TestCase):
         instance_str = output.getvalue()
         self.assertIn(self.uid, instance_str)
 
-    def test_all_error(self):
+    def test_do_all_error(self):
         """_summary_
         """
-        pass
+        with patch('sys.stdout', new=StringIO()) as output:
+            HBNBCommand().onecmd("all {}".format("randomString"))
+        error_msg = output.getvalue().strip()
+        self.assertEqual(error_msg, "** class doesn't exist **")
+
+    def test_all_error_advanced(self):
+        """_summary_
+        """
+        with patch('sys.stdout', new=StringIO()) as output:
+            HBNBCommand().onecmd("{}.all()".format("randomString"))
+        error_msg = output.getvalue().strip()
+        self.assertEqual(error_msg, "** class doesn't exist **")
+
+    def test_do_all_error_advanced_with_arg(self):
+        """_summary_
+        """
+        with patch('sys.stdout', new=StringIO()) as output:
+            HBNBCommand().onecmd("{}.all(arg)".format(self.classname))
+        error_msg = output.getvalue().strip()
+        self.assertEqual(error_msg, "*** Unknown syntax: {}.all(arg)".format(self.classname))
+    
+    def test_count(self):
+        """_summary_
+        """
+        with patch('sys.stdout', new=StringIO()) as output:
+            HBNBCommand().onecmd("{}.count()".format(self.classname))
+        number = output.getvalue().strip()
+        self.assertEqual(eval(number), 4)
+
+    def test_count_error(self):
+        """_summary_
+        """
+        with patch('sys.stdout', new=StringIO()) as output:
+            HBNBCommand().onecmd("{}.count()".format("random"))
+        error_msg = output.getvalue().strip()
+        self.assertEqual(error_msg, "** class doesn't exist **")
+
+    def test_count_error_with_arg(self):
+        """_summary_
+        """
+        with patch('sys.stdout', new=StringIO()) as output:
+            HBNBCommand().onecmd("{}.count(arg)".format(self.classname))
+        error_msg = output.getvalue().strip()
+        self.assertEqual(error_msg, "*** Unknown syntax: {}.count(arg)".format(self.classname))
+
+    # def test_show(self):
+    #     """_summary_
+    #     """
+    #     with patch('sys.stdout'. new=StringIO()) as output:
+    #         HBNBCommand().onecmd("show {}")
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
