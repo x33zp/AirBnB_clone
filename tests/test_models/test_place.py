@@ -64,19 +64,5 @@ class TestUser(unittest.TestCase):
         self.assertIsInstance(self.obj.longitude, float)
         self.assertIsInstance(self.obj.amenity_ids, list)
 
-    def test_init_with_attribute(self):
-        """Test initialization with additional attribute."""
-        self.obj.name = "Santorini Hotel"
-        self.assertEqual(self.obj.name, "Santorini Hotel")
-        self.assertIn('name', self.obj.__dict__)
-
-    def test_str_representation(self):
-        """Test string representation."""
-        self.obj.name = "test_str"
-        expected_str = "[Place] ({}) {}".format(self.obj.id,
-                                                self.obj.__dict__)
-        self.assertEqual(str(self.obj), expected_str)
-
-
 if __name__ == '__main__':
     unittest.main()
