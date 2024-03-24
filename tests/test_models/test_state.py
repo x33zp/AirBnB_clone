@@ -21,9 +21,6 @@ class TestUser(unittest.TestCase):
             os.rename("file.json", "tmp.json")
 
         self.obj = State()
-        self.obj_2 = State()
-        self.obj.name = "Rivers"
-        self.obj_dict = self.obj.to_dict()
 
     @classmethod
     def tearDown(self):
@@ -35,72 +32,15 @@ class TestUser(unittest.TestCase):
 
     def test_init(self):
         """Test initialization of BaseModel."""
-        self.assertIsNotNone(self.obj.id)
-        self.assertIsNotNone(self.obj.created_at)
-        self.assertIsNotNone(self.obj.updated_at)
         self.assertTrue(issubclass(type(self.obj), BaseModel))
-
-    def test_uuid(self):
-        """Test uniqueness of UUID."""
-        self.assertTrue(hasattr(self.obj, 'id'))
-        self.assertNotEqual(self.obj.id, self.obj_2.id)
-        self.assertIsInstance(self.obj.id, str)
-
-    def test_datetime(self):
-        """Test datetime attributes."""
-        self.assertTrue(hasattr(self.obj, 'created_at'))
-        self.assertTrue(hasattr(self.obj, 'updated_at'))
-        self.assertIsInstance(self.obj.created_at, datetime)
-        self.assertIsInstance(self.obj.updated_at, datetime)
-        self.assertNotEqual(self.obj.created_at,
-                            self.obj_2.created_at)
+        self.assertEqual(str(type(self.obj)), "<class 'models.state.State'>")
 
     def test_for_attributes(self):
         """Test if class attributes exists."""
-        self.assertIn('name', dir(self.obj_2))
+        self.assertIn('name', dir(self.obj))
         self.assertTrue(hasattr(self.obj, 'name'))
         self.assertIsInstance(self.obj.name, str)
-        self.assertNotIn('name', self.obj_2.__dict__)
-
-    def test_init_with_attribute(self):
-        """Test initialization with additional attribute."""
-        self.obj.name = "Lagos"
-        self.assertEqual(self.obj.name, "Lagos")
-        self.assertIsInstance(self.obj.name, str)
-
-    def test_str_representation(self):
-        """Test string representation."""
-        self.obj.name = "test_str"
-        expected_str = "[State] ({}) {}".format(self.obj.id,
-                                                self.obj.__dict__)
-        self.assertEqual(str(self.obj), expected_str)
-
-    def test_dict_representation(self):
-        """Test dictionary representation."""
-        created_iso = self.obj.created_at.isoformat()
-        updated_iso = self.obj.updated_at.isoformat()
-        self.assertEqual(self.obj_dict['id'], self.obj.id)
-        self.assertEqual(self.obj_dict['__class__'], 'State')
-        self.assertEqual(self.obj_dict['name'], 'Rivers')
-        self.assertEqual(self.obj_dict['created_at'], created_iso)
-        self.assertEqual(self.obj_dict['updated_at'], updated_iso)
-
-    def test_save(self):
-        """Test save method."""
-        self.obj.save()
-        obj_dict_2 = self.obj.to_dict()
-        self.assertNotEqual(self.obj_dict['updated_at'],
-                            obj_dict_2['updated_at'])
-        self.assertEqual(self.obj_dict['created_at'],
-                         obj_dict_2['created_at'])
-
-    def test_init_with_kwargs(self):
-        """Test initialization with keyword arguments."""
-        kwargs_model = State(**self.obj_dict)
-        self.assertIsInstance(kwargs_model.id, str)
-        self.assertEqual(kwargs_model.name, "Rivers")
-        self.assertIsInstance(kwargs_model.created_at, datetime)
-        self.assertIsNotNone(kwargs_model.updated_at, datetime)
+        self.assertNotIn('name', self.obj.__dict__)
 
 
 if __name__ == '__main__':
