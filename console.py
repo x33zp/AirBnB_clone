@@ -14,7 +14,7 @@ from models.base_model import BaseModel
 
 
 class HBNBCommand(cmd.Cmd):
-    """Command Interpreter Class
+    """Command Interpreter Class.
     """
 
     prompt = '(hbnb) '
@@ -22,26 +22,27 @@ class HBNBCommand(cmd.Cmd):
                'Place', 'Review'}
 
     def do_quit(self, person):
-        """Quit command to exit the program
+        """Command to exit the program.
         """
         return True
 
     def do_EOF(self, line):
-        """Handles the Ends Of File with a newline
+        """Handles the Ends Of File signal with a newline.
         """
         print()
         return True
 
     def emptyline(self):
-        """Handles Empty Line Command
+        """Handles Empty Line Command.
         """
         pass
 
     def do_create(self, arg):
-        """Create a new instance of a class
+        """Create a new instance of a class.
 
         Args:
             arg (str): The name of the class to create an instance of.
+            arg <class name>.count(): Retrieves the number of instances.
         """
         if not arg:
             print("** class name missing **")
@@ -57,6 +58,7 @@ class HBNBCommand(cmd.Cmd):
 
         Args:
             args (str): The class name and instance id separated by space.
+            arg <class name>.show(<id>): Retrieves an instance based on its ID
         """
         if not args:
             print("** class name missing **")
@@ -80,6 +82,7 @@ class HBNBCommand(cmd.Cmd):
 
         Args:
             args (str): The class name and instance id separated by space.
+            arg <class name>.destroy(<id>): Destroys an instance by ID.
         """
         if not args:
             print("** class name missing **")
@@ -104,6 +107,7 @@ class HBNBCommand(cmd.Cmd):
 
         Args:
             arg (str): The class name (optional).
+            arg <class name>.all(): Retrieves all instances of a class.
         """
         if not args:
             print([str(obj) for obj in storage.all().values()])
@@ -121,6 +125,10 @@ class HBNBCommand(cmd.Cmd):
         Args:
             args (str): A string containing the class name, instance ID,
             attribute name, and value to be updated.
+            arg <class name>.update(<id>, <attribute name>, <attribute value>):
+            Update an instance based on his ID.
+            arg <class name>.update(<id>, <dictionary representation>):
+            update an instance based on his ID with a dictionary.
         """
         if not args:
             print("** class name missing **")
@@ -146,8 +154,7 @@ class HBNBCommand(cmd.Cmd):
                     obj.save()
 
     def default(self, args):
-        """_summary_
-        """
+        """Handles other commands that are not documented"""
         pattern = r'^(\w+)\.(\w+)(?:\(([^)]*)\))$'
         command_string = args
         match = re.search(pattern, command_string)
