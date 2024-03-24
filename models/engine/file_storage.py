@@ -49,7 +49,7 @@ class FileStorage:
         """
         filename = self.__file_path
 
-        if not os.path.isfile(self.__file_path):
+        if not os.path.isfile(filename):
             return
 
         with open(filename, 'r') as jsonfile:
