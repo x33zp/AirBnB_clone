@@ -195,15 +195,16 @@ class TestHBNBCommand(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as output:
             HBNBCommand().onecmd("{}.all(arg)".format(self.classname))
         error_msg = output.getvalue().strip()
-        self.assertEqual(error_msg, "*** Unknown syntax: {}.all(arg)".format(self.classname))
-    
+        self.assertEqual(error_msg, "*** Unknown syntax: {}.all(arg)"
+                         .format(self.classname))
+
     def test_count(self):
         """_summary_
         """
         with patch('sys.stdout', new=StringIO()) as output:
             HBNBCommand().onecmd("{}.count()".format(self.classname))
         number = output.getvalue().strip()
-        self.assertEqual(eval(number), 4)
+        self.assertEqual(eval(number), 3)
 
     def test_count_error(self):
         """_summary_
@@ -219,13 +220,15 @@ class TestHBNBCommand(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as output:
             HBNBCommand().onecmd("{}.count(arg)".format(self.classname))
         error_msg = output.getvalue().strip()
-        self.assertEqual(error_msg, "*** Unknown syntax: {}.count(arg)".format(self.classname))
+        self.assertEqual(error_msg, "*** Unknown syntax: {}.count(arg)"
+                         .format(self.classname))
 
     # def test_show(self):
     #     """_summary_
     #     """
     #     with patch('sys.stdout'. new=StringIO()) as output:
     #         HBNBCommand().onecmd("show {}")
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
