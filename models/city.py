@@ -1,11 +1,15 @@
 #!/usr/bin/python3
-"""This module creates a User class"""
+"""City module.
+
+This module which inherits from BaseModel defines the City
+class, which represents the City of each user of the
+application.
+"""
 
 from models.base_model import BaseModel
 
 
 class City(BaseModel):
-    """Class for managing city objects"""
-
+    """This class represents a City."""
     state_id = ""
     name = ""
