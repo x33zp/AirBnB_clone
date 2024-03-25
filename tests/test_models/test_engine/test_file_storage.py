@@ -24,10 +24,9 @@ class TestFileStorage(unittest.TestCase):
     @classmethod
     def setUp(self):
         """Set up method for the class"""
-        if os.path.isfile(storage._FileStorage__file_path):
-            os.rename(storage._FileStorage__file_path, 'tmp.json')
+        if os.path.isfile(FileStorage._FileStorage__file_path):
+            os.rename(FileStorage._FileStorage__file_path, 'tmp.json')
 
-        storage._FileStorage__objects = {}
         self.all_objs = storage.all()
         self.classes = {'BaseModel', 'User', 'State', 'City', 'Amenity',
                         'Place', 'Review'}
@@ -35,10 +34,11 @@ class TestFileStorage(unittest.TestCase):
     @classmethod
     def tearDown(self):
         """Tear down method for the class."""
-        if os.path.isfile(storage._FileStorage__file_path):
-            os.remove(storage._FileStorage__file_path)
+        if os.path.isfile(FileStorage._FileStorage__file_path):
+            os.remove(FileStorage._FileStorage__file_path)
         if os.path.isfile("tmp.json"):
-            os.rename("tmp.json", storage._FileStorage__file_path)
+            os.rename("tmp.json", FileStorage._FileStorage__file_path)
+        FileStorage._FileStorage__objects = {}
 
     def test_instance(self):
         """Test for instance creation."""
@@ -52,16 +52,16 @@ class TestFileStorage(unittest.TestCase):
 
     def test_for_attr_types(self):
         """Test for correct attribute types."""
-        self.assertIsInstance(storage._FileStorage__objects, dict)
-        self.assertIsInstance(storage._FileStorage__file_path, str)
+        self.assertIsInstance(FileStorage._FileStorage__objects, dict)
+        self.assertIsInstance(FileStorage._FileStorage__file_path, str)
 
     def test_all(self):
         """Test for the 'all' method."""
         for obj in self.classes:
             eval(obj)()
         self.assertIsNotNone(self.all_objs)
-        for obj_id in storage._FileStorage__objects:
-            obj = storage._FileStorage__objects[obj_id]
+        for obj_id in FileStorage._FileStorage__objects:
+            obj = FileStorage._FileStorage__objects[obj_id]
             obj_dict = obj.to_dict()
             self.assertIn(obj_dict['__class__'], self.classes)
 
@@ -71,21 +71,23 @@ class TestFileStorage(unittest.TestCase):
             model_obj = eval(obj)()
             storage.new(model_obj)
             key = "{}.{}".format(type(model_obj).__name__, model_obj.id)
-            self.assertIn(key, storage._FileStorage__objects)
+            self.assertIn(key, FileStorage._FileStorage__objects)
 
     def test_save(self):
         """Test for the 'save' method."""
+        # os.remove(FileStorage.FileStrorage__file_path)
+        # FileStorage._FileStorage__objects = {}
         self.assertEqual(self.all_objs, {})
-        self.assertFalse(os.path.isfile(storage._FileStorage__file_path))
+        self.assertFalse(os.path.isfile(FileStorage._FileStorage__file_path))
         for obj in self.classes:
             model_obj = eval(obj)()
             storage.new(model_obj)
             storage.save()
             key = "{}.{}".format(type(model_obj).__name__, model_obj.id)
-            with open(storage._FileStorage__file_path, 'r') as jsonfile:
+            with open(FileStorage._FileStorage__file_path, 'r') as jsonfile:
                 text = jsonfile.read()
                 self.assertIn(key, text)
-        self.assertTrue(os.path.isfile(storage._FileStorage__file_path))
+        self.assertTrue(os.path.isfile(FileStorage._FileStorage__file_path))
 
     def test_reload(self):
         """Test for the 'reload' method."""
@@ -95,7 +97,7 @@ class TestFileStorage(unittest.TestCase):
             storage.save()
             storage.reload()
             key = "{}.{}".format(type(model_obj).__name__, model_obj.id)
-            self.assertIn(key, storage._FileStorage__objects)
+            self.assertIn(key, FileStorage._FileStorage__objects)
 
 
 if __name__ == '__main__':
