@@ -10,10 +10,10 @@
 ## Description <a name="description">
 The project aims to replicate some of the core functionalities of the popular accommodation rental platform AirBnB utilizing Object-Oriented Programming (OOP) principles and following Test-Driven Development (TDD) methodologies. It includes a command-line interface (CLI) and backend functionalities for managing and interacting with rental properties.
 
-### The Console
+- ### The Console
 The console is a command line interface that allows users to interact with the JSON file-based data storage system for the AirBnB clone project. It uses the Python module 'cmd' to create the interface and provides a custom prompt of '(hbnb)'. The console implements the ability to quit the program using 'quit' or 'EOF' and provides a 'help' command to display information on available commands.
 
-### Models
+- ### Models
 The models folder contains files of all classes uses in the project.
 | Classes | Description | Attributes | file
 | ----------- | ----------- | ----------- | ----------- |
@@ -25,7 +25,7 @@ The models folder contains files of all classes uses in the project.
 | `Amenity` | For managing Amenity informatin | `name` | [amenity.py](https://github.com/x33zp/AirBnB_clone/blob/main/models/amenity.py) |
 | `Review` | For managing review information | `place_id`, `user_id`, `text` | [review.py](https://github.com/x33zp/AirBnB_clone/blob/main/models/review.py) |
 
-### Storage
+- ### Storage
 
 
 ## Usage <a name="usage">
@@ -41,10 +41,13 @@ git clone https://github.com/x33zp/AirBnB_clone.git
 
 | Command | Description |
 | ----------- | ----------- |
-| `(hbnb) help` | Quits the console |
-| `(hbnb) quit` | Quits the console |
-| `(hbnb) create` | Quits the console |
-| `(hbnb) all` | Quits the console |
-| `(hbnb) show` | Quits the console |
-| `(hbnb) update` | Quits the console |
-| `(hbnb) destroy` | Quits the console |
+| `(hbnb) help ` | Displays a list of available commands |
+|  `(hbnb) help <command>` | Provides information about the command specified as an argument. |
+| `(hbnb) quit` | Exits/quits the console. |
+| `(hbnb) create <classname>` | Creates a new instance of the specified class and returns the ID |
+| `(hbnb) all` | Displays the string representation all instances of all classes. |
+| `(hbnb) all <classname>` <br> or <br>  `<classname>.all()` | Displays the string representation of all instances of the specified class |
+| `(hbnb) <classname>.count()` | Displays the total number of instances of the specified class. |
+| `(hbnb) show <classname> <id>` <br> or <br> `<classname>.show("<id>")` | Displays the string representation of a specific instance based on the class name and ID provided. |
+| `(hbnb) update <classname> <id> <attribute name> "<attribute value>"` <br> or <br> `<class name>.update(<id>, <attribute name>, <attribute value>)` <br> or <br> `<class name>.update(<id>, <dictionary representation>)` | Updates attributes of a specific instance based on the class name and ID provided.  |
+| `(hbnb) destroy <classname> <id>` | Deletes a specific instance based on the class name and ID provided |
