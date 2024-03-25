@@ -64,5 +64,6 @@ class TestUser(unittest.TestCase):
         self.assertIsInstance(self.obj.longitude, float)
         self.assertIsInstance(self.obj.amenity_ids, list)
 
+
 if __name__ == '__main__':
     unittest.main()

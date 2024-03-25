@@ -33,7 +33,8 @@ class TestUser(unittest.TestCase):
     def test_init(self):
         """Test initialization of BaseModel."""
         self.assertTrue(issubclass(type(self.obj), BaseModel))
-        self.assertEqual(str(type(self.obj)), "<class 'models.amenity.Amenity'>")
+        self.assertEqual(str(type(self.obj)),
+                         "<class 'models.amenity.Amenity'>")
 
     def test_for_attributes(self):
         """Test if class attributes exists."""

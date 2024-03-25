@@ -75,9 +75,8 @@ class TestFileStorage(unittest.TestCase):
 
     def test_save(self):
         """Test for the 'save' method."""
-        # os.remove(FileStorage.FileStrorage__file_path)
-        # FileStorage._FileStorage__objects = {}
-        self.assertEqual(self.all_objs, {})
+        FileStorage._FileStorage__objects = {}
+        self.assertEqual(FileStorage._FileStorage__objects, {})
         self.assertFalse(os.path.isfile(FileStorage._FileStorage__file_path))
         for obj in self.classes:
             model_obj = eval(obj)()

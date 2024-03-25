@@ -49,5 +49,6 @@ class TestUser(unittest.TestCase):
         self.assertIsInstance(self.obj.user_id, str)
         self.assertIsInstance(self.obj.text, str)
 
+
 if __name__ == '__main__':
     unittest.main()

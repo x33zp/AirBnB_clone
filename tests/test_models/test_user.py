@@ -53,5 +53,6 @@ class TestUser(unittest.TestCase):
         self.assertIsInstance(self.obj.last_name, str)
         self.assertIsInstance(self.obj.password, str)
 
+
 if __name__ == '__main__':
     unittest.main()
