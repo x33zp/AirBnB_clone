@@ -204,7 +204,6 @@ class TestHBNBCommand(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as output:
             HBNBCommand().onecmd("{}.count()".format(self.classname))
         number = output.getvalue().strip()
-        
         self.assertEqual(eval(number), 4)
 
     def test_default_count_error(self):
