@@ -223,11 +223,14 @@ class TestHBNBCommand(unittest.TestCase):
         self.assertEqual(error_msg, "*** Unknown syntax: {}.count(arg)"
                          .format(self.classname))
 
-    # def test_show(self):
-    #     """_summary_
-    #     """
-    #     with patch('sys.stdout'. new=StringIO()) as output:
-    #         HBNBCommand().onecmd("show {}")
+    def test_show(self):
+        """_summary_
+        """
+        with patch('sys.stdout', new=StringIO()) as output:
+            HBNBCommand().onecmd("show {} {}"
+                                 .format(self.classname, self.classname.id))
+        obj_str = output.getvalue().strip()
+        self.assertEqual()
 
 
 if __name__ == '__main__':
