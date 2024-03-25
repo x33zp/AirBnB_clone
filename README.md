@@ -17,7 +17,7 @@ The console is a command line interface that allows users to interact with the J
 The models folder contains files of all classes uses in the project.
 | Classes | Description | Attributes | file
 | ----------- | ----------- | ----------- | ----------- |
-| `BaseModel` | Base class which defines all common attributes/methods for other classes. | `id`, `created_at`, `updated_at` | | [base_model.py](https://github.com/x33zp/AirBnB_clone/blob/main/models/base_model.py) |
+| `BaseModel` | Base class which defines all common attributes/methods for other classes. | `id`, `created_at`, `updated_at` | [base_model.py](https://github.com/x33zp/AirBnB_clone/blob/main/models/base_model.py) |
 | `User` | For managing user information | `email`, `password`, `first_name`, `last_name` | [user.py](https://github.com/x33zp/AirBnB_clone/blob/main/models/user.py) |
 | `State` | For managing location information | `name` | [state.py](https://github.com/x33zp/AirBnB_clone/blob/main/models/state.py) |
 | `City` | For managing location information | `state_id`, `name` | [city.py](https://github.com/x33zp/AirBnB_clone/blob/main/models/city.py) |
@@ -30,10 +30,14 @@ The models folder contains files of all classes uses in the project.
 
 ## Usage <a name="usage">
 - **Cloning the repository**
-`git clone https://github.com/x33zp/AirBnB_clone.git`
+```
+git clone https://github.com/x33zp/AirBnB_clone.git
+```
 
 - **Running the console**
-`./console.py`
+```
+./console.py
+```
 
 | Command | Description |
 | ----------- | ----------- |
