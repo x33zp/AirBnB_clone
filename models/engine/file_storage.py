@@ -24,21 +24,21 @@ class FileStorage:
     def all(self):
         """Get all instances stored in the file.
         """
-        return FileStorage.__objects
+        return self.__objects
 
     def new(self, obj):
         """Add a new instance to the storage.
         """
         key = "{}.{}".format(type(obj).__name__, obj.id)
-        FileStorage.__objects[key] = obj
+        self.__objects[key] = obj
 
     def save(self):
         """Saves the serialized instances to the JSON file.
         """
-        filename = FileStorage.__file_path
+        filename = self.__file_path
         json_data = {}
 
-        for key, value in FileStorage.__objects.items():
+        for key, value in self.__objects.items():
             json_data[key] = value.to_dict()
 
         with open(filename, 'w') as jsonfile:
@@ -56,4 +56,4 @@ class FileStorage:
             obj_dict = json.load(jsonfile)
             for key, value in obj_dict.items():
                 class_obj = eval(value["__class__"])(**value)
-                FileStorage.__objects[key] = class_obj
+                self.__objects[key] = class_obj
