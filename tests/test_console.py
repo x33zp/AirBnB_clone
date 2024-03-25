@@ -149,13 +149,13 @@ class TestHBNBCommand(unittest.TestCase):
         self.uid = output.getvalue().strip()
         self.assertTrue(len(self.uid) > 0)
 
-    # def test_do_all_no_arg(self):
-    #     """_summary_
-    #     """
-    #     with patch('sys.stdout', new=StringIO()) as output:
-    #         HBNBCommand().onecmd("all")
-    #     instance_str = output.getvalue()
-    #     self.assertIn(self.uid, instance_str)
+    def test_do_all(self):
+        """_summary_
+        """
+        with patch('sys.stdout', new=StringIO()) as output:
+            HBNBCommand().onecmd("all")
+        instance_str = output.getvalue()
+        self.assertIn(self.uid, instance_str)
 
     # def test_do_all_with_arg(self):
     #     """_summary_
