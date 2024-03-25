@@ -3,9 +3,8 @@
 ## Table Of Content
 - [Description](#description)
 - [Usage](#usage)
-- [Description](#description)
-- [Description](#description)
-- [Description](#description)
+- [Testing](#testing)
+- [Authors](#authors)
 
 ## Description <a name="description">
 The project aims to replicate some of the core functionalities of the popular accommodation rental platform AirBnB utilizing Object-Oriented Programming (OOP) principles and following Test-Driven Development (TDD) methodologies. It includes a command-line interface (CLI) and backend functionalities for managing and interacting with rental properties.
@@ -26,10 +25,10 @@ The project aims to replicate some of the core functionalities of the popular ac
   | `Review` | For managing review information | `place_id`, `user_id`, `text` | [review.py](https://github.com/x33zp/AirBnB_clone/blob/main/models/review.py) |
 
 - ### Storage
-  The FileStorage system utilizes JSON (JavaScript Object Notation) as the serialization format for storing data persistently. Specifically, the data is stored in a file named `file.json`, which serves as the primary storage mechanism for the application.
+  The FileStorage system utilizes JSON (JavaScript Object Notation) as the serialization format for storing data persistently. Specifically, the data is stored in a file named `file.json`, which serves as the primary storage mechanism for the application, the code can be found in [file_storage.py](https://github.com/x33zp/AirBnB_clone/blob/main/models/engine/file_storage.py).
 
   **Functionality**
-  - Data Serialization: Objects within the AirBnB Clone project are serialized into JSON format before being written to the file.json file. This serialization process converts Python objects into a human-readable and lightweight format that can be easily stored and manipulated.
+  - Data Serialization and Deserialization: Objects within the AirBnB Clone project are serialized into JSON format before being written to the file.json file. This serialization process converts Python objects into a human-readable and lightweight format that can be easily stored, manipulated and retrieved followinf this flow: `<object> -> to_dict() -> <dictionary> -> JSON dump -> <json string> -> FILE -> <json string> -> JSON load -> <dictionary> -> <object>`.
 
   - File Organization: The file.json file organizes data using JSON object notation, with each class or data type represented as a JSON object. Individual instances of classes are stored as nested objects within their respective class entries.
 
@@ -50,7 +49,7 @@ The project aims to replicate some of the core functionalities of the popular ac
   | Command | Description |
   | ----------- | ----------- |
   | `(hbnb) help ` | Displays a list of available commands |
-  |  `(hbnb) help <command>` | Provides information about the command specified as an argument. |
+  | `(hbnb) help <command>` | Provides information about the command specified as an argument. |
   | `(hbnb) quit` | Exits/quits the console. |
   | `(hbnb) create <classname>` | Creates a new instance of the specified class and returns the ID |
   | `(hbnb) all` | Displays the string representation all instances of all classes. |
@@ -59,3 +58,16 @@ The project aims to replicate some of the core functionalities of the popular ac
   | `(hbnb) show <classname> <id>` or <br> `<classname>.show("<id>")` | Displays the string representation of a specific instance based on the class name and ID provided. |
   | `(hbnb) update <classname> <id> <attribute name> "<attribute value>"` or <br> `<class name>.update("<id>", "<attribute name>", "<attribute value>")` or <br> `<class name>.update("<id>", <dictionary representation>)` | Updates attributes of a specific instance based on the class name and ID provided.  |
   | `(hbnb) destroy <classname> <id>` | Deletes a specific instance based on the class name and ID provided |
+
+## Testing <a name="testing">
+Unittest for the project are defined in the [tests](https://github.com/x33zp/AirBnB_clone/tree/main/tests) folder. To run the entire test suite simultaneously, execute the following command:
+```
+$ python3 unittest -m discover tests
+```
+Alternatively, you can specify a single test file to run at a time:
+```
+$ python3 unittest -m tests/filename.py
+```
+
+## Authors <a name="authors">
+[Zubby Peculiar](https://github.com/x33zp)
