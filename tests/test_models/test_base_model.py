@@ -6,6 +6,8 @@ This module contains unit tests for the BaseModel class.
 
 import os
 import unittest
+import models
+from models.engine.file_storage import FileStorage
 from datetime import datetime
 from models.base_model import BaseModel
 
@@ -85,6 +87,10 @@ class TestBaseModel(unittest.TestCase):
     def test_save(self):
         """Test save method."""
         self.obj.save()
+        key = "{}.{}".format(type(self.obj).__name__, self.obj.id)
+        self.assertTrue(os.path.isfile(FileStorage._FileStorage__file_path))
+        all_saved = models.storage.all()
+        self.assertIn(key, all_saved)
         obj_dict_2 = self.obj.to_dict()
         self.assertNotEqual(self.obj_dict['updated_at'],
                             obj_dict_2['updated_at'])
