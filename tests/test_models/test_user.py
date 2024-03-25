@@ -45,6 +45,13 @@ class TestUser(unittest.TestCase):
         self.assertTrue(hasattr(self.obj, 'first_name'))
         self.assertTrue(hasattr(self.obj, 'last_name'))
 
+    def test_for_attributes(self):
+        """Test if class attributes exists."""
+        self.assertIsInstance(self.obj.email, str)
+        self.assertIsInstance(self.obj.password, str)
+        self.assertIsInstance(self.obj.first_name, str)
+        self.assertIsInstance(self.obj.last_name, str)
+        self.assertIsInstance(self.obj.password, str)
 
 if __name__ == '__main__':
     unittest.main()
