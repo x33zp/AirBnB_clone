@@ -141,13 +141,13 @@ class TestHBNBCommand(unittest.TestCase):
         help_quit = "Command to exit the program."
         self.assertEqual(output.getvalue().strip(), help_quit)
 
-    # def test_do_create(self):
-    #     """_summary_
-    #     """
-    #     with patch('sys.stdout', new=StringIO()) as output:
-    #         HBNBCommand().onecmd("create {}".format(self.classname))
-    #     self.uid = output.getvalue().strip()
-    #     self.assertTrue(len(self.uid) > 0)
+    def test_do_create(self):
+        """_summary_
+        """
+        with patch('sys.stdout', new=StringIO()) as output:
+            HBNBCommand().onecmd("create {}".format(self.classname))
+        self.uid = output.getvalue().strip()
+        self.assertTrue(len(self.uid) > 0)
 
     # def test_do_all_no_arg(self):
     #     """_summary_
