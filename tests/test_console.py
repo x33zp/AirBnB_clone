@@ -228,9 +228,10 @@ class TestHBNBCommand(unittest.TestCase):
         """
         with patch('sys.stdout', new=StringIO()) as output:
             HBNBCommand().onecmd("show {} {}"
-                                 .format(self.classname, self.classname.id))
-        obj_str = output.getvalue().strip()
-        self.assertEqual()
+                                 .format(self.classname, self.uid))
+        instance_str = output.getvalue().strip()
+        self.assertIn(self.uid, instance_str)
+        self.assertIn(self.classname, instance_str)
 
 
 if __name__ == '__main__':
