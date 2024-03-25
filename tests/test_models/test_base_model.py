@@ -7,6 +7,7 @@ This module contains unit tests for the BaseModel class.
 import os
 import unittest
 from datetime import datetime
+import models
 from models.base_model import BaseModel
 
 
