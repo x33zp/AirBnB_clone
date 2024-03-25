@@ -70,4 +70,4 @@ $ python3 unittest -m tests/filename.py
 ```
 
 ## Authors <a name="authors">
-[Zubby Peculiar](https://github.com/x33zp)
+- [Zubby Peculiar](https://github.com/x33zp)
