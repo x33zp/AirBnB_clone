@@ -1,0 +1,91 @@
+section.filters {
+    background: white;
+    height: 70px;
+    width: 100%;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    position: relative;
+    display: flex;
+}
+
+section.filters button {
+    font-size: 14px;
+    background: #FF5A5F;
+    color: #FFFFFF;
+    height: 48px;
+    width: 20%;
+    border: none;
+    border-radius: 4px;
+    position: absolute;
+    top: 50%;
+    right: 30px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+section.filters button:hover {
+    opacity: 90%;
+}
+
+section.filters div {
+    height: 100%;
+    width: 25%;
+    padding-left: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+}
+
+section.filters div:hover>.popover {
+    display: block;
+}
+
+section.filters .location {
+    border-right: 1px solid #DDDDDD;
+}
+
+section.filters div h3 {
+    font-weight: 600;
+    font-size: 15px;
+}
+
+section.filters div h4 {
+    font-weight: 400;
+    font-size: 14px;
+}
+
+section.filters div .popover {
+    display: none;
+    background: #FAFAFA;
+    width: 100%;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    z-index: 100;
+}
+
+section.filters .location .popover {
+    padding-top: 10px;
+    padding-bottom: 30px;
+}
+
+section.filters .amenities .popover {
+    padding: 30px 0;
+}
+
+section.filters div .popover h2 {
+    font-size: 16px;
+    text-indent: 20px;
+    margin-top: 20px;
+}
+
+section.filters div .popover li {
+    font-size: 14px;
+    padding: 0 40px;
+    line-height: 1.5;
+}
