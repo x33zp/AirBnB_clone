@@ -37,6 +37,7 @@ section.places article .price_by_night {
     top: 15px;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 section.places article .information {
