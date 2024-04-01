@@ -41,7 +41,7 @@ The project aims to replicate some of the core functionalities of the popular ac
   $ git clone https://github.com/x33zp/AirBnB_clone.git
   ```
 
-- **Running the console**
+- **Running the console** \
   The console can be run both interactively and non-interactively.
   ```
   $ ./console.py
@@ -74,15 +74,15 @@ The project aims to replicate some of the core functionalities of the popular ac
 
   A prompt for input is displayed in interactive mode, then you can proceed to input a valid command.
   \
-  using the `create` command.
+  **using the `create` command.**
   ```
   $ ./console
   (hbnb) create BaseModel
   6ed092f8-dd5f-418c-a83b-136d5f7fd293
-  (hbnb)
+  (hbnb) quit
   ```
   \
-  Using the `all`, `all <classname>` and `<classname>.all()`commands.
+  **Using the `all`, `all <classname>` and `<classname>.all()`commands.**
   ```
   (hbnb) create User
   c69cd071-b08e-45da-912e-87812525c5a4
@@ -94,7 +94,7 @@ The project aims to replicate some of the core functionalities of the popular ac
   ["[BaseModel] (6ed092f8-dd5f-418c-a83b-136d5f7fd293) {'id': '6ed092f8-dd5f-418c-a83b-136d5f7fd293', 'created_at': datetime.datetime(2024, 3, 31, 16, 29, 43, 120752), 'updated_at': datetime.datetime(2024, 3, 31, 16, 29, 43, 120821)}"]
   ```
   \
-  Using the `<classname>.count()` command.
+  **Using the `<classname>.count()` command.**
   ```
   (hbnb) create User
   412731ac-a032-411a-aab8-bc81871e2ce9
@@ -104,7 +104,7 @@ The project aims to replicate some of the core functionalities of the popular ac
   1
   ```
   \
-  Using the `show <classname> <id>` and `<classname>.show("<id>")` commands.
+  **Using the `show <classname> <id>` and `<classname>.show("<id>")` commands.**
   ```
   (hbnb) show BaseModel 6ed092f8-dd5f-418c-a83b-136d5f7fd293
   [BaseModel] (6ed092f8-dd5f-418c-a83b-136d5f7fd293) {'id': '6ed092f8-dd5f-418c-a83b-136d5f7fd293', 'created_at': datetime.datetime(2024, 3, 31, 16, 29, 43, 120752), 'updated_at': datetime.datetime(2024, 3, 31, 16, 29, 43, 120821)}
@@ -112,7 +112,7 @@ The project aims to replicate some of the core functionalities of the popular ac
   [User] (412731ac-a032-411a-aab8-bc81871e2ce9) {'id': '412731ac-a032-411a-aab8-bc81871e2ce9', 'created_at': datetime.datetime(2024, 3, 31, 16, 43, 54, 277038), 'updated_at': datetime.datetime(2024, 3, 31, 16, 43, 54, 277111)}
   ```
   \
-  Using the `update <classname> <id> <attribute name> "<attribute value>"`, `<class name>.update("<id>", "<attribute name>", "<attribute value>")`, `<class name>.update("<id>", <dictionary representation>)` commands.
+  **Using the `update <classname> <id> <attribute name> "<attribute value>"`, `<class name>.update("<id>", "<attribute name>", "<attribute value>")` and `<class name>.update("<id>", <dictionary representation>)` commands.**
   ```
   (hbnb) update BaseModel 6ed092f8-dd5f-418c-a83b-136d5f7fd293 name "1st_BaseModel"
   (hbnb) show BaseModel 6ed092f8-dd5f-418c-a83b-136d5f7fd293
@@ -124,7 +124,7 @@ The project aims to replicate some of the core functionalities of the popular ac
   [User] (412731ac-a032-411a-aab8-bc81871e2ce9) {'id': '412731ac-a032-411a-aab8-bc81871e2ce9', 'created_at': datetime.datetime(2024, 3, 31, 16, 43, 54, 277038), 'updated_at': datetime.datetime(2024, 3, 31, 17, 7, 31, 22184), 'name': 'user2', 'number': 2}
   ```
   \
-  Using the `destroy <classname> <id>` and `<class name>.destroy("<id>")` commands.
+  **Using the `destroy <classname> <id>` and `<class name>.destroy("<id>")` commands.**
   ```
   (hbnb) User.count()
   2
@@ -136,7 +136,7 @@ The project aims to replicate some of the core functionalities of the popular ac
   0
   ```
   \
-  Exiting the console.
+  **Exiting the console.**
   ```
   (hbnb) quit
   $
