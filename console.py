@@ -58,7 +58,7 @@ class HBNBCommand(cmd.Cmd):
 
         Args:
             args (str): The class name and instance id separated by space.
-            arg <class name>.show(<id>): Retrieves an instance based on its ID
+            arg <class name>.show("<id>"): Retrieves an instance based on its ID
         """
         if not args:
             print("** class name missing **")
@@ -82,7 +82,7 @@ class HBNBCommand(cmd.Cmd):
 
         Args:
             args (str): The class name and instance id separated by space.
-            arg <class name>.destroy(<id>): Destroys an instance by ID.
+            arg <class name>.destroy("<id>"): Destroys an instance by ID.
         """
         if not args:
             print("** class name missing **")
@@ -125,9 +125,9 @@ class HBNBCommand(cmd.Cmd):
         Args:
             args (str): A string containing the class name, instance ID,
             attribute name, and value to be updated.
-            arg <class name>.update(<id>, <attribute name>, <attribute value>):
+            arg <class name>.update("<id>", <attribute name>, <attribute value>):
             Update an instance based on his ID.
-            arg <class name>.update(<id>, <dictionary representation>):
+            arg <class name>.update("<id>", <dictionary representation>):
             update an instance based on his ID with a dictionary.
         """
         if not args:
