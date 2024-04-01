@@ -38,26 +38,109 @@ The project aims to replicate some of the core functionalities of the popular ac
 ## Usage <a name="usage">
 - **Cloning the repository**
   ```
-  git clone https://github.com/x33zp/AirBnB_clone.git
+  $ git clone https://github.com/x33zp/AirBnB_clone.git
   ```
 
 - **Running the console**
+  The console can be run both interactively and non-interactively.
   ```
-  ./console.py
+  $ ./console.py
   ```
 
   | Command | Description |
   | ----------- | ----------- |
-  | `(hbnb) help ` | Displays a list of available commands |
-  | `(hbnb) help <command>` | Provides information about the command specified as an argument. |
-  | `(hbnb) quit` | Exits/quits the console. |
-  | `(hbnb) create <classname>` | Creates a new instance of the specified class and returns the ID |
-  | `(hbnb) all` | Displays the string representation all instances of all classes. |
-  | `(hbnb) all <classname>` or <br>  `<classname>.all()` | Displays the string representation of all instances of the specified class |
-  | `(hbnb) <classname>.count()` | Displays the total number of instances of the specified class. |
-  | `(hbnb) show <classname> <id>` or <br> `<classname>.show("<id>")` | Displays the string representation of a specific instance based on the class name and ID provided. |
-  | `(hbnb) update <classname> <id> <attribute name> "<attribute value>"` or <br> `<class name>.update("<id>", "<attribute name>", "<attribute value>")` or <br> `<class name>.update("<id>", <dictionary representation>)` | Updates attributes of a specific instance based on the class name and ID provided.  |
-  | `(hbnb) destroy <classname> <id>` | Deletes a specific instance based on the class name and ID provided |
+  | `help` | Displays a list of available commands |
+  | `help <command>` | Provides information about the command specified as an argument. |
+  | `quit` | Exits/quits the console. |
+  | `create <classname>` | Creates a new instance of the specified class and returns the ID |
+  | `all` | Displays the string representation all instances of all classes. |
+  | `all <classname>` or <br>  `<classname>.all()` | Displays the string representation of all instances of the specified class |
+  | `<classname>.count()` | Displays the total number of instances of the specified class. |
+  | `show <classname> <id>` or <br> `<classname>.show("<id>")` | Displays the string representation of a specific instance based on the class name and ID provided. |
+  | `update <classname> <id> <attribute name> "<attribute value>"` or <br> `<class name>.update("<id>", "<attribute name>", "<attribute value>")` or <br> `<class name>.update("<id>", <dictionary representation>)` | Updates attributes of a specific instance based on the class name and ID provided.  |
+  | `destroy <classname> <id>` or <br> `<class name>.destroy("<id>")` | Deletes a specific instance based on the class name and ID provided |
+
+  To run non-interactively you need to pipe a valid console command into the execution of the `console.py` file.
+  ```
+  $ echo "help" | ./console.py
+  (hbnb)
+  Documented commands (type help <topic>):
+  ========================================
+  EOF  all  create  destroy  help  quit  show  update
+
+  (hbnb)
+  $
+  ```
+
+  A prompt for input is displayed in interactive mode, then you can proceed to input a valid command.
+  \
+  using the `create` command.
+  ```
+  $ ./console
+  (hbnb) create BaseModel
+  6ed092f8-dd5f-418c-a83b-136d5f7fd293
+  (hbnb)
+  ```
+  \
+  Using the `all`, `all <classname>` and `<classname>.all()`commands.
+  ```
+  (hbnb) create User
+  c69cd071-b08e-45da-912e-87812525c5a4
+  (hbnb) all
+  ["[BaseModel] (6ed092f8-dd5f-418c-a83b-136d5f7fd293) {'id': '6ed092f8-dd5f-418c-a83b-136d5f7fd293', 'created_at': datetime.datetime(2024, 3, 31, 16, 29, 43, 120752), 'updated_at': datetime.datetime(2024, 3, 31, 16, 29, 43, 120821)}", "[User] (c69cd071-b08e-45da-912e-87812525c5a4) {'id': 'c69cd071-b08e-45da-912e-87812525c5a4', 'created_at': datetime.datetime(2024, 3, 31, 16, 39, 48, 231360), 'updated_at': datetime.datetime(2024, 3, 31, 16, 39, 48, 231451)}"]
+  (hbnb) all User
+  ["[User] (c69cd071-b08e-45da-912e-87812525c5a4) {'id': 'c69cd071-b08e-45da-912e-87812525c5a4', 'created_at': datetime.datetime(2024, 3, 31, 16, 39, 48, 231360), 'updated_at': datetime.datetime(2024, 3, 31, 16, 39, 48, 231451)}"]
+  (hbnb) BaseModel.all()
+  ["[BaseModel] (6ed092f8-dd5f-418c-a83b-136d5f7fd293) {'id': '6ed092f8-dd5f-418c-a83b-136d5f7fd293', 'created_at': datetime.datetime(2024, 3, 31, 16, 29, 43, 120752), 'updated_at': datetime.datetime(2024, 3, 31, 16, 29, 43, 120821)}"]
+  ```
+  \
+  Using the `<classname>.count()` command.
+  ```
+  (hbnb) create User
+  412731ac-a032-411a-aab8-bc81871e2ce9
+  (hbnb) User.count()
+  2
+  (hbnb) BaseModel.count()
+  1
+  ```
+  \
+  Using the `show <classname> <id>` and `<classname>.show("<id>")` commands.
+  ```
+  (hbnb) show BaseModel 6ed092f8-dd5f-418c-a83b-136d5f7fd293
+  [BaseModel] (6ed092f8-dd5f-418c-a83b-136d5f7fd293) {'id': '6ed092f8-dd5f-418c-a83b-136d5f7fd293', 'created_at': datetime.datetime(2024, 3, 31, 16, 29, 43, 120752), 'updated_at': datetime.datetime(2024, 3, 31, 16, 29, 43, 120821)}
+  (hbnb) User.show("412731ac-a032-411a-aab8-bc81871e2ce9")
+  [User] (412731ac-a032-411a-aab8-bc81871e2ce9) {'id': '412731ac-a032-411a-aab8-bc81871e2ce9', 'created_at': datetime.datetime(2024, 3, 31, 16, 43, 54, 277038), 'updated_at': datetime.datetime(2024, 3, 31, 16, 43, 54, 277111)}
+  ```
+  \
+  Using the `update <classname> <id> <attribute name> "<attribute value>"`, `<class name>.update("<id>", "<attribute name>", "<attribute value>")`, `<class name>.update("<id>", <dictionary representation>)` commands.
+  ```
+  (hbnb) update BaseModel 6ed092f8-dd5f-418c-a83b-136d5f7fd293 name "1st_BaseModel"
+  (hbnb) show BaseModel 6ed092f8-dd5f-418c-a83b-136d5f7fd293
+  [BaseModel] (6ed092f8-dd5f-418c-a83b-136d5f7fd293) {'id': '6ed092f8-dd5f-418c-a83b-136d5f7fd293', 'created_at': datetime.datetime(2024, 3, 31, 16, 29, 43, 120752), 'updated_at': datetime.datetime(2024, 3, 31, 16, 54, 42, 661124), 'name': '1st_BaseModel'}
+  (hbnb) User.update("c69cd071-b08e-45da-912e-87812525c5a4", "name", "user1")
+  (hbnb) show User c69cd071-b08e-45da-912e-87812525c5a4
+  [User] (c69cd071-b08e-45da-912e-87812525c5a4) {'id': 'c69cd071-b08e-45da-912e-87812525c5a4', 'created_at': datetime.datetime(2024, 3, 31, 16, 39, 48, 231360), 'updated_at': datetime.datetime(2024, 3, 31, 16, 57, 59, 514057), 'name': 'user1'}
+  (hbnb) User.update("412731ac-a032-411a-aab8-bc81871e2ce9", {"name": "user2", "number": 2})
+  [User] (412731ac-a032-411a-aab8-bc81871e2ce9) {'id': '412731ac-a032-411a-aab8-bc81871e2ce9', 'created_at': datetime.datetime(2024, 3, 31, 16, 43, 54, 277038), 'updated_at': datetime.datetime(2024, 3, 31, 17, 7, 31, 22184), 'name': 'user2', 'number': 2}
+  ```
+  \
+  Using the `destroy <classname> <id>` and `<class name>.destroy("<id>")` commands.
+  ```
+  (hbnb) User.count()
+  2
+  (hbnb) destroy User c69cd071-b08e-45da-912e-87812525c5a4
+  (hbnb) User.count()
+  1
+  (hbnb) User.destroy("412731ac-a032-411a-aab8-bc81871e2ce9")
+  (hbnb) User.count()
+  0
+  ```
+  \
+  Exiting the console.
+  ```
+  (hbnb) quit
+  $
+  ```
 
 ## Testing <a name="testing">
 Unittest for the project are defined in the [tests](https://github.com/x33zp/AirBnB_clone/tree/main/tests) folder. To run the entire test suite simultaneously, execute the following command:
