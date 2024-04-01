@@ -42,7 +42,7 @@ The project aims to replicate some of the core functionalities of the popular ac
   ```
 
 - **Running the console** \
-  The console can be run both interactively and non-interactively.
+  The console can be run both interactively and non-interactively, A prompt for input is displayed in interactive mode, then you can proceed to input a valid command.
   ```
   $ ./console.py
   ```
@@ -72,7 +72,7 @@ The project aims to replicate some of the core functionalities of the popular ac
   $
   ```
 
-  A prompt for input is displayed in interactive mode, then you can proceed to input a valid command.
+  <!-- 
   \
   **using the `create` command.**
   ```
@@ -140,7 +140,7 @@ The project aims to replicate some of the core functionalities of the popular ac
   ```
   (hbnb) quit
   $
-  ```
+  ``` -->
 
 ## Testing <a name="testing">
 Unittest for the project are defined in the [tests](https://github.com/x33zp/AirBnB_clone/tree/main/tests) folder. To run the entire test suite simultaneously, execute the following command:
