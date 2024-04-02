@@ -97,7 +97,7 @@ class TestHBNBCommand(unittest.TestCase):
                         "        Args:\n "
                         "           args (str): The class name and instance "
                         "id separated by space.\n"
-                        "            arg <class name>.destroy(<id>): "
+                        "            arg <class name>.destroy(\"<id>\"): "
                         "Destroys an instance by ID.")
         self.assertEqual(output.getvalue().strip(), help_destroy)
 
@@ -110,7 +110,7 @@ class TestHBNBCommand(unittest.TestCase):
                      "        Args:\n "
                      "           args (str): The class name and instance id "
                      "separated by space.\n"
-                     "            arg <class name>.show(<id>): Retrieves an "
+                     "            arg <class name>.show(\"<id>\"): Retrieves an "
                      "instance based on its ID")
         self.assertEqual(output.getvalue().strip(), help_show)
 
@@ -124,10 +124,10 @@ class TestHBNBCommand(unittest.TestCase):
                        "           args (str): A string containing the class "
                        "name, instance ID,\n"
                        "            attribute name, and value to be updated.\n"
-                       "            arg <class name>.update(<id>, "
+                       "            arg <class name>.update(\"<id>\", "
                        "<attribute name>, <attribute value>):\n"
                        "            Update an instance based on his ID.\n"
-                       "            arg <class name>.update(<id>, "
+                       "            arg <class name>.update(\"<id>\", "
                        "<dictionary representation>):\n"
                        "            update an instance based on his ID with a "
                        "dictionary.")
@@ -232,6 +232,83 @@ class TestHBNBCommand(unittest.TestCase):
         instance_str = output.getvalue().strip()
         self.assertIn(self.uid, instance_str)
         self.assertIn(self.classname, instance_str)
+
+    def test_default_show(self):
+        """_summary_
+        """
+        with patch('sys.stdout', new=StringIO()) as output:
+            HBNBCommand().onecmd("{}.show('{}')"
+                                 .format(self.classname, self.uid))
+        instance_str = output.getvalue().strip()
+        self.assertIn(self.uid, instance_str)
+        self.assertIn(self.classname, instance_str)
+
+    def test_do_show_error_no_arg(self):
+        """_summary_
+        """
+        with patch('sys.stdout', new=StringIO()) as output:
+            HBNBCommand().onecmd("show {}"
+                                 .format(self.classname))
+        error_msg = output.getvalue().strip()
+        self.assertEqual(error_msg, "** instance id missing **")
+
+    def test_do_show_error_invalid_classname(self):
+        """_summary_
+        """
+        with patch('sys.stdout', new=StringIO()) as output:
+            HBNBCommand().onecmd("show {} {})".format("randomString", self.uid))
+        error_msg = output.getvalue().strip()
+        self.assertEqual(error_msg, "** class doesn't exist **")
+
+    def test_do_show_error_invalid_UID(self):
+        """_summary_
+        """
+        with patch('sys.stdout', new=StringIO()) as output:
+            HBNBCommand().onecmd("show {} {})".format(self.classname, 123456))
+        error_msg = output.getvalue().strip()
+        self.assertEqual(error_msg, "** no instance found **")
+
+    def test_default_show_error_no_arg(self):
+        """_summary_
+        """
+        with patch('sys.stdout', new=StringIO()) as output:
+            HBNBCommand().onecmd("{}.show()".format(self.classname))
+        error_msg = output.getvalue().strip()
+        self.assertEqual(error_msg, "*** Unknown syntax: {}.show()"
+                         .format(self.classname))
+        
+    def test_default_show_error_empty_arg(self):
+        """_summary_
+        """
+        with patch('sys.stdout', new=StringIO()) as output:
+            HBNBCommand().onecmd("{}.show(\"\")".format(self.classname))
+        error_msg = output.getvalue().strip()
+        self.assertEqual(error_msg, "** instance id missing **")
+
+    def test_default_show_error_invalid_classname(self):
+        """_summary_
+        """
+        with patch('sys.stdout', new=StringIO()) as output:
+            HBNBCommand().onecmd("{}.show(\"{}\")".format("randomString", self.uid))
+        error_msg = output.getvalue().strip()
+        self.assertEqual(error_msg, "** class doesn't exist **")
+
+    def test_default_show_error_invalid_uid(self):
+        """_summary_
+        """
+        with patch('sys.stdout', new=StringIO()) as output:
+            HBNBCommand().onecmd("{}.show(\"{}\")".format(self.classname, 123456))
+        error_msg = output.getvalue().strip()
+        self.assertEqual(error_msg, "** no instance found **")
+
+    def test_default_show_error_invalid_id_format(self):
+        """_summary_
+        """
+        with patch('sys.stdout', new=StringIO()) as output:
+            HBNBCommand().onecmd("{}.show({})".format(self.classname, self.uid))
+        error_msg = output.getvalue().strip()
+        self.assertEqual(error_msg, "*** Unknown syntax: {}.show({})"
+                         .format(self.classname, self.uid))
 
 
 if __name__ == '__main__':
